@@ -827,5 +827,5 @@ def train(project,
         name="eurovoc-classifier",
         kind="huggingface",
         base_model="google-bert/bert-base-cased",
-        source=save_dir,
+        source=models_path,
     )             
