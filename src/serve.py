@@ -11,7 +11,7 @@ def init(context):
     # Retrieve the path to the model from the environment variables
     device = os.environ.get("DEVICE", "cuda")
     pred_type = os.environ.get("PRED_TYPE", "label")
-    language = os.environ.get("LANGUAGE", "it")
+    language = os.environ.get("MODEL_LANGUAGE", "it")
     threshold = os.environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
     top_k = os.environ.get("TOP_K", None) # If None, all the labels will be returned. Only considered if threshold is None
     
