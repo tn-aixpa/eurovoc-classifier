@@ -574,7 +574,7 @@ def get_metrics(y_true, predictions, args, language, current_split):
         y_true,
         predictions,
         "",
-        threshold,
+        args.threshold,
         False,
         args.save_class_report,
     ) if args.full_metrics else sklearn_metrics_single(
@@ -601,6 +601,15 @@ def get_metrics(y_true, predictions, args, language, current_split):
 
     current_epoch += 1
 
+    with open(path.join(
+                args.models_path,
+                language,
+                str(current_split),
+                "metrics.json",
+            ), "w") as metrics_fp:
+                json.dump(metrics, metrics_fp, indent=2)
+
+    
     return metrics
 
 
@@ -833,6 +842,8 @@ def train(project,
     else:
         seeds = [name.split("_")[1] for name in listdir(path.join(args.data_path, args.lang)) if "split" in name]
     for seed in seeds:    
+        if save_class_report:
+            
         project.log_model(
             name=f"eurovoc-classifier-{seed}",
             kind="huggingface",
