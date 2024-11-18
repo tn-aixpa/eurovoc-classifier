@@ -1,19 +1,19 @@
-from os import environ
+import os
 from transformers import pipeline
 
 src_basepath = "/shared/src"
 def init(context):
-    model_name = "eurovoc-classifier"
+    model_name = "eurovoc-classifier-110"
 
     model = context.project.get_model(model_name)
-    path = model.download() + "/it/110/checkpoint-833"
+    path = model.download()
 
     # Retrieve the path to the model from the environment variables
-    device = environ.get("DEVICE", "cuda")
-    pred_type = environ.get("PRED_TYPE", "label")
-    language = environ.get("LANGUAGE", "it")
-    threshold = environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
-    top_k = environ.get("TOP_K", None) # If None, all the labels will be returned. Only considered if threshold is None
+    device = os.environ.get("DEVICE", "cuda")
+    pred_type = os.environ.get("PRED_TYPE", "label")
+    language = os.environ.get("LANGUAGE", "it")
+    threshold = os.environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
+    top_k = os.environ.get("TOP_K", None) # If None, all the labels will be returned. Only considered if threshold is None
     
     if top_k is not None:
         top_k = int(top_k)
@@ -39,8 +39,8 @@ def init(context):
 def serve(context, event):
     tokenizer_kwargs = {"padding": "max_length", "truncation": True, "max_length": 512}
 
-    threshold = environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
-    pred_type = environ.get("PRED_TYPE", "id")
+    threshold = os.environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
+    pred_type = os.environ.get("PRED_TYPE", "id")
     
     if isinstance(event.body, bytes):
         body = json.loads(event.body)
