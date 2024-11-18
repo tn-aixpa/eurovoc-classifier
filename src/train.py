@@ -846,7 +846,7 @@ def train(project,
     for seed in seeds:    
         metrics = {}
         try: 
-            metrics_path = path.join(models_path, lang, split, "metrics.json")
+            metrics_path = path.join(models_path, lang, seed, "metrics.json")
             print(f"Reading metrics at {metrics_path} ...") 
             with open(metrics_path, 'r') as file:
                 metrics = json.load(file)
