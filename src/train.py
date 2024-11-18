@@ -844,7 +844,7 @@ def train(project,
     for seed in seeds:    
         metrics = {}
         try: 
-            with open(path.join(res[seed], "metrics.json"), 'r') as file:
+            with open(path.join(models_path, lang, split, "metrics.json"), 'r') as file:
                 metrics = json.load(file)
         except:
             print("No metrics saved")                       
