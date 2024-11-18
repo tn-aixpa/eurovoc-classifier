@@ -10,7 +10,7 @@ def init(context):
     path = model.download()
 
     # Retrieve the path to the model from the environment variables
-    device = os.environ.get("DEVICE", "cuda")
+    device = os.environ.get("DEVICE", "cuda:0")
     pred_type = os.environ.get("PRED_TYPE", "label")
     language = os.environ.get("MODEL_LANGUAGE", "it")
     threshold = os.environ.get("THRESHOLD", None) # If None, the pipeline will use top_k
