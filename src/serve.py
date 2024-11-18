@@ -1,4 +1,4 @@
-from os import path, environ
+from os import environ
 from transformers import pipeline
 
 src_basepath = "/shared/src"
@@ -6,7 +6,7 @@ def init(context):
     model_name = "eurovoc-classifier"
 
     model = context.project.get_model(model_name)
-    path = model.download()
+    path = model.download() + "/it/110/checkpoint-833"
 
     # Retrieve the path to the model from the environment variables
     device = environ.get("DEVICE", "cuda")
@@ -25,7 +25,7 @@ def init(context):
         "text-classification",
         model=path,
         tokenizer=path,
-        config=path.join(path, "config.json"),
+        config=os.path.join(path, "config.json"),
         device=device,
         top_k=top_k,
     )
