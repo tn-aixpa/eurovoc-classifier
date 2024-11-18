@@ -601,12 +601,14 @@ def get_metrics(y_true, predictions, args, language, current_split):
 
     current_epoch += 1
 
-    with open(path.join(
+    metrics_path = path.join(
                 args.models_path,
                 language,
                 str(current_split),
                 "metrics.json",
-            ), "w") as metrics_fp:
+            )
+    print(f"Saving metrics at {metrics_path} ...") 
+    with open(metrics_path, "w") as metrics_fp:
                 json.dump(metrics, metrics_fp, indent=2)
 
     
@@ -844,7 +846,9 @@ def train(project,
     for seed in seeds:    
         metrics = {}
         try: 
-            with open(path.join(models_path, lang, split, "metrics.json"), 'r') as file:
+            metrics_path = path.join(models_path, lang, split, "metrics.json")
+            print(f"Reading metrics at {metrics_path} ...") 
+            with open(metrics_path, 'r') as file:
                 metrics = json.load(file)
         except:
             print("No metrics saved")                       
