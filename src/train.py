@@ -843,9 +843,12 @@ def train(project,
         seeds = [name.split("_")[1] for name in listdir(path.join(args.data_path, args.lang)) if "split" in name]
     for seed in seeds:    
         metrics = {}
-        with open(path.join(res[seed], "metrics.json"), 'r') as file:
-            metrics = json.load(file)
-                
+        try: 
+            with open(path.join(res[seed], "metrics.json"), 'r') as file:
+                metrics = json.load(file)
+        except:
+            print("No metrics saved")                       
+            
         project.log_model(
             name=f"eurovoc-classifier-{seed}",
             kind="huggingface",
