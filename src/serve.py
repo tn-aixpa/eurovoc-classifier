@@ -1,5 +1,6 @@
 import os
 from transformers import pipeline
+import json
 
 src_basepath = "/shared/src"
 def init(context):
