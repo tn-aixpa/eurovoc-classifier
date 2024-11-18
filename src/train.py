@@ -630,6 +630,8 @@ def start_train(args):
 
     print(f"\nTraining for language: '{args.lang}' using: '{config[args.lang]}'...")
 
+    res = {}
+    
     # Train the models for all splits
     for seed in seeds:
         current_split = seed
@@ -736,9 +738,10 @@ def start_train(args):
                 compute_metrics=compute_metrics
             )
         trainer.train()
-
+        res[seed] = path.join(args.models_path, args.lang, seed, trainer.state.best_model_checkpoint)
         # print(f"Best checkpoint path: {trainer.state.best_model_checkpoint}")
-
+    return res
+    
 def train(project, 
           train_data,
           lang = "it", 
@@ -822,10 +825,17 @@ def train(project,
         
     args = parser.parse_args(args)  
 
-    start_train(args)
-    project.log_model(
-        name="eurovoc-classifier",
-        kind="huggingface",
-        base_model="google-bert/bert-base-cased",
-        source=models_path,
-    )             
+    res = start_train(args)
+
+    # Load the seeds for the different splits
+    if args.seeds != "all":
+        seeds = args.seeds.split(",")
+    else:
+        seeds = [name.split("_")[1] for name in listdir(path.join(args.data_path, args.lang)) if "split" in name]
+    for seed in seeds:    
+        project.log_model(
+            name=f"eurovoc-classifier-{seed}",
+            kind="huggingface",
+            base_model="google-bert/bert-base-cased",
+            source=res[seed],
+        )             
