@@ -48,7 +48,7 @@ def serve(context, event):
     else:
         body = event.body
 
-    text = body.text
+    text = body["text"]
     predictions = context.model(text, **tokenizer_kwargs)
     if not threshold:
         # If no threshold is specified, return all the predictions
