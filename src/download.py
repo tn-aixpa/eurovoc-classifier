@@ -3,7 +3,7 @@ from os import listdir, path, makedirs
 import gzip
 from tqdm import tqdm
 import argparse
-from scraper import EURlexScraper
+from src.scraper import EURlexScraper
 
 base_path = "./download"
 output_path = "./download/output"
