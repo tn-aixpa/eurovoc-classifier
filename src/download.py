@@ -5,8 +5,8 @@ from tqdm import tqdm
 import argparse
 from src.scraper import EURlexScraper
 
-base_path = "./download"
-output_path = "./download/output"
+base_path = "download"
+output_path = "download/output"
 
 def extract_documents(data_path, output_path):
     path_docs = data_path
