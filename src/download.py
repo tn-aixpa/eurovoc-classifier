@@ -41,8 +41,8 @@ def download(
     sleep_time=1
 ):
 
-    directory = f"{base_path}/eurlexdata/input/"
-    output_directory = f"{base_path}/eurlexdata/output/"
+    directory = f"{base_path}"
+    output_directory = output_path
     
     
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
