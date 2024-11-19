@@ -9,6 +9,7 @@ base_path = "download"
 output_path = "data"
 
 def extract_documents(data_path, output_path):
+    print(f"Writing data tou output {output_path}")
     path_docs = data_path
     years = [name for name in listdir(path_docs) if path.isfile(path.join(path_docs, name)) and name.endswith(".json.gz")]
     final_path = output_path
