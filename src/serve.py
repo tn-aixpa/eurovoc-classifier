@@ -4,8 +4,8 @@ import json
 
 src_basepath = "/shared/src"
 def init(context):
-    model_name = "eurovoc-classifier-110"
-
+    
+    model_name = os.environ.get("MODEL_NAME", "eurovoc-classifier-110")
     model = context.project.get_model(model_name)
     path = model.download()
 
