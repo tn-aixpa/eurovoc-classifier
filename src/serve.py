@@ -7,7 +7,12 @@ def init(context):
     
     model_name = os.environ.get("MODEL_NAME", "eurovoc-classifier-110")
     model = context.project.get_model(model_name)
-    path = model.download("./")
+    path = model.download()
+
+    config = [f for f in model.status.files if f["name"] == "config.json"]
+    rel_path = os.path.dirname(config[0]["path"])
+    path = os.path.join(path, rel_path)
+
     print(f"model saved to {path}")
 
     # Retrieve the path to the model from the environment variables
