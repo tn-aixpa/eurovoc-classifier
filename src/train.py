@@ -757,7 +757,7 @@ def train(project,
           train_data,
           lang = "it", 
           seeds = "110",
-          device = "cuda",
+          device = "cuda:0",
           epochs = 100,
           batch_size = 8,
           learning_rate = 3e-5,
@@ -809,7 +809,7 @@ def train(project,
     except:
         print("Error deleting files")                       
     try:
-        train_data.download(f"{file_basepath}/")
+        train_data.download(f"{file_basepath}/data/{lang}")
     except:
         print("Error downloading files")                       
 
