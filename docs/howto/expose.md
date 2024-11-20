@@ -75,6 +75,7 @@ The deployments targets the GPU-based profile, and internally it loads the model
 
 It is possible to customize the deployment through the environment variables passed to deployment:
 
+- ``DEVICE`` (default ``cuda:0``): device to use (e.g., ``cpu`` or ``cuda:<index>``)
 - ``MODEL_NAME``: name of the model to use
 - ``PRED_TYPE`` (default ``label``): define what to return as a result (id or label)
 - ``THRESHOLD``: threshold for the confidence to consider
