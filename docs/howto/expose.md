@@ -84,7 +84,10 @@ It is possible to customize the deployment through the environment variables pas
 3. Test the API
 
 This API expects a POST call with body in the following form:
+
 ```python
 json = {
     "text": "Qualche testo da classificare"
 }
+llm_run.invoke(method="POST", json=json).json()
+```
