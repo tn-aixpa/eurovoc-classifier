@@ -1,0 +1,2 @@
+digitalhub==0.8.0
+streamlit

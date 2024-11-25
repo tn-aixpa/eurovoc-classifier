@@ -92,3 +92,16 @@ json = {
 }
 llm_run.invoke(method="POST", json=json).json()
 ```
+
+3. Use Streamlit for testing
+
+Once exposed, the service may be integrated with a simple demo [Streamlit](https://streamlit.io/) application. To do this, in your workspace
+install the required dependencies (see the [src/app-requirements.txt](../../src/app-requirements.txt)) and run the application:
+
+```
+streamlit run src/app.py
+```
+
+The application expects the service endpoint (host:port format) as a ``SERVICE_URL`` environment variable. If not provided, the app will ask the endpoint to be provided y the user.
+
+The application returns the list of tags corresponding to the provided text.
