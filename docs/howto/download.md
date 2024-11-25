@@ -7,7 +7,7 @@ To obtain the necessary training data, it is possible to use ``download`` operat
 ```python
 import digitalhub as dh
 PROJECT_NAME = "eurovoc-classifier-project" # here goes the project name that you are creating on the platform
-proj = dh.get_or_create_project(PROJECT_NAME)
+project = dh.get_or_create_project(PROJECT_NAME)
 ```
 
 2. Define the function
