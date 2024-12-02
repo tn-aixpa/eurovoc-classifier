@@ -40,9 +40,7 @@ Run the function
 
 
 ```python
-func.run(action="job", inputs={"train_data": artifact.key, "model": model.key},
-         parameters={"seeds": "110", "lang": "it", "batch_size": 8, "threshold": 0.5, "parents": "none", "trust_remote": False, "data_path": "/data", "models_path": "/model"}
-		 )
+func.run(action="job", inputs={"train_data": artifact.key, "model": model.key}, parameters={"seeds": "110", "lang": "it", "batch_size": 8, "threshold": 0.5, "parents": "none", "trust_remote": False, "data_path": "/data", "models_path": "/model"})
 ```
 
 Here the prediction targets Italian and the corresponding base model is loaded. The model is reported with all metric set, the prediction generates as output the confusion matrix.
