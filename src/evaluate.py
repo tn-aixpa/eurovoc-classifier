@@ -653,8 +653,6 @@ def start_evaluate(args):
     # Evaluate the model
     model.eval()
     trainer.predict(test_set)
-    project.log_artifact(name="evaluation", kind="artifact", source=f"{file_basepath}/{args.models_path}/evaluation")
-
     
 def evaluate(project,
              train_data,
@@ -728,3 +726,4 @@ def evaluate(project,
         print("Error downloading model")        
    
     res = start_evaluate(args)
+    project.log_artifact(name="evaluation", kind="artifact", source=f"{file_basepath}/{args.models_path}/evaluation")
