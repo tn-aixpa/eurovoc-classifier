@@ -672,7 +672,7 @@ def evaluate(project,
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--lang", type=str, default="it", help="Language to train the model on.")
     parser.add_argument("--seeds", type=str, default="all", help="Seeds to be used to load the data splits, separated by a comma (e.g. 110,221). Use 'all' to use all the data splits.")
-    parser.add_argument("--device", type=str, default="cpu", choices=["cpu", "cuda"], help="Device to train on.")
+    parser.add_argument("--device", type=str, default="cpu", help="Device to train on.")
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size of the dataset.")
     parser.add_argument("--threshold", type=float, default=0.5, help="Threshold for the prediction confidence.")
     parser.add_argument("--parents", type=str, default="none", help="How to handle the parents of the labels. Add them 'artificially' with the 'add' option, or use the 'builtin' option if the labels were added during training.")
