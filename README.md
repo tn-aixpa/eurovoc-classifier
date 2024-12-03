@@ -24,6 +24,7 @@ Tool usage documentation [here](./docs/usage.md).
 - [Preprocess data for training](./docs/howto/process.md)
 - [Train the classifier model](./docs/howto/train.md)
 - [Expose the classifed model as a service](./docs/howto/expose.md)
+- [Evaluate](./docs/howto/evaluate.md)
 
 
 ## License
