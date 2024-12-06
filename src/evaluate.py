@@ -652,7 +652,8 @@ def start_evaluate(args):
 
     # Evaluate the model
     model.eval()
-    trainer.predict(test_set)
+    trainer.predict(test_set)   
+
     
 def evaluate(project,
              train_data,
@@ -663,9 +664,7 @@ def evaluate(project,
              batch_size = 8,
              threshold = 0.5,
              parents = "none",
-             trust_remote = False,
-             data_path = "data/",                   
-             models_path = "models/"
+             trust_remote = False
             ):
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--lang", type=str, default="it", help="Language to train the model on.")
@@ -677,7 +676,10 @@ def evaluate(project,
     parser.add_argument("--trust_remote", default=False, help="Trust the remote code for the model.")
     parser.add_argument("--data_path", type=str, default="data/", help="Path to the EuroVoc data.")
     parser.add_argument("--models_path", type=str, default="models/", help="Path of the models.")
-    
+
+    data_path = f"{file_basepath}/data"
+    models_path = f"{file_basepath}/models"
+                
     args = [
         "--lang", lang,
         "--seeds", seeds,
